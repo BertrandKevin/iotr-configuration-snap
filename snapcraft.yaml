@@ -7,8 +7,8 @@ base: core
 grade: stable
 confinement: strict
 architectures:
-  - build-on: armhf
-    run-on: armhf
+  - build-on: all
+    run-on: all
 
 apps:
   configure-iotr:
