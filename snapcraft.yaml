@@ -1,4 +1,4 @@
-name: configure-iot
+name: configure-iotr
 version: '0.0.1'
 summary: Configuration script for IOTR
 description: |
@@ -11,12 +11,12 @@ architectures:
     run-on: armhf
 
 apps:
-  configure-iot:
+  configure-iotr:
     command: bin/hello
     plugs: [home,network-bind]
 
 parts:
-  configure-iot:
+  configure-iotr:
     plugin: python
     python-version: python3
     source: .
