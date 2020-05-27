@@ -7,7 +7,7 @@ base: core
 grade: stable
 confinement: strict
 architectures:
-  - build-on: all
+  - build-on: armhf
     run-on: armhf
 
 apps:
