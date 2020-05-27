@@ -1,0 +1,23 @@
+name: configure-iot
+version: '0.0.1'
+summary: Configuration script for IOTR
+description: |
+ This script allows user to configure the IOTR from Itron. 
+base: core
+grade: stable
+confinement: strict
+architectures:
+  - build-on: all
+    run-on: armhf
+
+apps:
+  configure-iot:
+    command: bin/hello
+    plugs: [home,network-bind]
+
+parts:
+  configure-iot:
+    plugin: python
+    python-version: python3
+    source: .
+    stage-packages: [ncbi-blast+]

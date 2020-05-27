@@ -1,0 +1,61 @@
+#!/usr/bin/python
+
+# Librairies import
+import os
+import platform
+import subprocess
+import socket
+import sys
+
+import src.check_user_input as checkUserInput
+import src.configureIP as confIP
+import src.configureNic as confNIC
+import src.configureVPN as confVPN
+
+# Functions
+def configure_or_reset():
+	answer = ""
+
+	while answer != "1" and answer != "2":
+		answer = input("Voulez-vous: \n" +
+			"[1]: Effectuer une configuration particuliere\n" +
+			"[2]: Effectuer un reset des parametres\n" +
+			"Reponse: ")
+
+	return answer
+
+def configuration_program():
+	if checkUserInput.question_and_verification("Voulez-vous configurer l'adresse IP?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
+		confIP.main()
+
+	if checkUserInput.question_and_verification("Voulez-vous configurer le NIC ?\n[y]: Oui\n[n]: Non\nReponse: ") =="y":
+		if checkUserInput.question_and_verification("Voulez-vous realiser une configuration manuelle ?\n[y]: Oui\n[n]: Non, on configure automatiquement pour la ville de Paris\nReponse: ") == "y":
+			confNIC.get_nic_settings()
+		else:
+			confNIC.set_nic_settings("fd05:a40b:b47d:7340::4", "1250")
+
+	if checkUserInput.question_and_verification("Voulez-vous configurer le VPN ?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
+		confVPN.install_snap_vpn()
+		confVPN.configure_snap()
+# Main program
+def main():
+	"Run the application"
+
+	configurationOption = configure_or_reset()
+
+	if configurationOption == "1":
+		configuration_program()
+	elif configurationOption == "2":
+		# Reset IP Addresses settings
+		netmask = "255.255.255.0"
+		routerAddress = "192.168.16.1"
+		confIP.search_network_informations(routerAddress, netmask, "/var/snap/ssnmode", "interfaces_static")
+
+		# Reset NIC settings
+		aftr = "fd1e:d0d6:d81d:e070::76"
+		countryCode = ""
+		confNIC.set_nic_settings(aftr, countryCode)
+
+# Starting point
+if __name__ == '__main__':
+	main()
