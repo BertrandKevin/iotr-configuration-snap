@@ -1,4 +1,4 @@
-name: configure-iotr
+name: iotr-configuration
 version: '0.0.1'
 summary: Configuration script for IOTR
 description: |
@@ -11,12 +11,12 @@ architectures:
     run-on: all
 
 apps:
-  configure-iotr:
+  iotr-configuration:
     command: bin/hello
     plugs: [home,network-bind]
 
 parts:
-  configure-iotr:
+  iotr-configuration:
     plugin: python
     python-version: python3
     source: .
