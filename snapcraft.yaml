@@ -1,5 +1,5 @@
 name: iotr-configuration
-version: '0.0.1'
+version: '0.0.2'
 summary: Configuration script for IOTR
 description: |
  This script allows user to configure the IOTR from Itron. 
