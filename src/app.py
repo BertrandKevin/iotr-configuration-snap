@@ -7,8 +7,6 @@ import subprocess
 import socket
 import sys
 
-from pexpect import pxssh
-
 import src.configuration as configuration
 
 # Functions
@@ -43,9 +41,6 @@ def configuration_program():
 # Main program
 def main():
 	"Run the application"
-
-	s = pxssh.pxssh()
-	s.login("localhost", "ssn", "Xf@9=qZc")
 	
 	configurationOption = configure_or_reset()
 
