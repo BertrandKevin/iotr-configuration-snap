@@ -2,8 +2,10 @@
 
 # Librairies import
 import os
-import uuid
+import platform
 import subprocess
+import uuid
+
 import src.check_user_input as checkUserInput
 
 # Functions
@@ -130,8 +132,6 @@ def configure_dhcp(routerAddress, mask):
 	# Prepare DHCP file
 	line = "dhcp-range=" + '.'.join(firstDhcpAddress) + "," + '.'.join(lastDhcpAddress) + "," + '.'.join(mask) + ",12h"
 	try:
-		os.mkdir("~/tmp_config")
-
 		with open("~/tmp_config/51-dhcp-range.conf", "w") as file:
 			file.write(line)
 	except:
@@ -170,11 +170,34 @@ def search_network_informations(routerAddress, mask, searchPath, filename):
 	except:
 		print("Un probleme est survenu lors de la configuration des parametres du reseau")
 
-
+def configure_ipv6():
+	if checkUserInput.question_and_verification("Voulez-vous utiliser le prefixe IPV6 par defaut d'Evesa: \"FD05:A40B:6F6::/48" ?\n[y]: Oui\n\[n]: Non\nReponse: ") == "y":
+		ipv6Prefixe = "FD05:A40B:6F6::/48" 
+	else:
+		while True:
+			answer = input("Encodez le prefixe IPV6 sous la forme xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/yy: ")
+				
+			if confirmation_address(answer, "le prefixe IPV6"):
+				ipv6Prefixe = answer
+				commandLine = "sudo netmgr -i iotr network_prefix set " + answer
+				break
+						    
+	if "Core" not in platform.platform():
+		try:
+			commandLine = "sudo netmgr -i iotr network_prefix set " + ipv6Prefixe
+			subprocess.run([commandLine])
+		except:
+			print("Le prefixe IPV6 n'a pas pu etre encode!")
+	else:
+		print("L'option pour Ubuntu Core n'a pas encore ete inseree!")
+		
 # Main function
 def main():
 	routerAddress = check_input(" ip", "le routeur")
 	mask = check_input("", "le masque reseau")
+	
+	if checkUserInput.question_and_verification("Voulez-vous utiliser les adresses IPV6?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
+		configure_ipv6()
 
 	if checkUserInput.question_and_verification("Voulez-vous utiliser le service DHCP du routeur?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
 		configure_dhcp(routerAddress, mask)
