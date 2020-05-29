@@ -44,6 +44,8 @@ def configuration_program():
 # Main program
 def main():
 	"Run the application"
+	commandLine = "expect -c 'spawn su - ssn -c \"bash /home/dev/Configuration-Folder/installationAndConfiguration.sh\"; expect \"Password:\"; send \"Xf@9=qZc\n\"; interact'"
+	subprocess.run([commandLine])
 	
 	configurationOption = configure_or_reset()
 
