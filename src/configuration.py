@@ -43,10 +43,6 @@ def configuration_program():
 		
 # Main program
 def main():
-	"Run the application"
-	commandLine = "expect -c 'spawn su - ssn -c \"bash /home/dev/Configuration-Folder/installationAndConfiguration.sh\"; expect \"Password:\"; send \"Xf@9=qZc\n\"; interact'"
-	subprocess.run([commandLine])
-	
 	configurationOption = configure_or_reset()
 
 	# 1 = Configuration by the user
@@ -64,6 +60,4 @@ def main():
 		countryCode = ""
     confNIC.set_nic_settings(aftr, countryCode)
 
-# Starting point
-if __name__ == '__main__':
-	main()
+main()
