@@ -7,10 +7,9 @@ import subprocess
 import socket
 import sys
 
-import src.check_user_input as checkUserInput
-import src.configureIP as confIP
-import src.configureNic as confNIC
-import src.configureVPN as confVPN
+from pexpect import pxssh
+
+import src.configuration as configuration
 
 # Functions
 def configure_or_reset():
@@ -44,8 +43,9 @@ def configuration_program():
 # Main program
 def main():
 	"Run the application"
-	commandLine = "expect -c 'spawn su - ssn -c \"bash /home/dev/Configuration-Folder/installationAndConfiguration.sh\"; expect \"Password:\"; send \"Xf@9=qZc\n\"; interact'"
-	subprocess.run([commandLine])
+
+	s = pxssh.pxssh()
+	s.login("localhost", "ssn", "Xf@9=qZc")
 	
 	configurationOption = configure_or_reset()
 
