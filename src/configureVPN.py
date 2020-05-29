@@ -27,7 +27,7 @@ def configure_snap():
 					break
 
 			if filePath != "":
-				write_openvpn_service(filepath)
+				write_openvpn_service(filePath)
 			else:
 				print("Aucun service VPN nome \"" + answer + "\" n'a ete trouve")
 
