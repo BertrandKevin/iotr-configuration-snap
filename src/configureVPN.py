@@ -8,7 +8,7 @@ def install_snap_vpn():
 		if "Core" not in platform.platform():
 			os.system("sudo snap install ~/Configuration-Folder/easy-openvpn_8.snap --dangerous --devmode")
 		else:
-			os.system("sudo snap install /Configuration-Folder/easy-openvpn_2_3_10_5_armhf.snap --dangerous --devmode")
+			os.system("sudo snap install ~/Configuration-Folder/easy-openvpn_2_3_10_5_armhf.snap --dangerous --devmode")
 	except:
 		print("Impossible d'installer le snap \"easy-openvpn\"!")
 
