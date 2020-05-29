@@ -63,6 +63,11 @@ def main():
 		aftr = "fd1e:d0d6:d81d:e070::76"
 		countryCode = ""
 		confNIC.set_nic_settings(aftr, countryCode)
+		
+	for root, dir in os.walk("~/"):
+		if "tmp_config" in root:
+			print(roor)
+			break
 
 # Starting point
 if __name__ == '__main__':
