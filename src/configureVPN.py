@@ -22,7 +22,7 @@ def configure_snap():
 			filePath = ""
 			for root, dir, files in os.walk("/"):
 				if answer in files:
-					filePath = os.path.joint(root, filename)
+					filePath = os.path.join(root, filename)
 					break
 
 			if filePath != "":
