@@ -132,7 +132,7 @@ def configure_dhcp(routerAddress, mask):
 	# Prepare DHCP file
 	line = "dhcp-range=" + '.'.join(firstDhcpAddress) + "," + '.'.join(lastDhcpAddress) + "," + '.'.join(mask) + ",12h"
 	try:
-		with open("~/tmp_config/51-dhcp-range.conf", "w") as file:
+		with open("~/Configuration-Folder/51-dhcp-range.conf", "w") as file:
 			file.write(line)
 	except:
 		print("Impossible d'enregistrer le fichier de configuration!")
@@ -164,7 +164,7 @@ def search_network_informations(routerAddress, mask, searchPath, filename):
 				line += "auto lo\n"
 				line += "\tiface lo inet loopback"
 
-				with open("~/tmp_config/interfaces_static", "w") as file:
+				with open("~/Configuration-Folder/interfaces_static", "w") as file:
 					file.write(line)
 				break
 	except:
