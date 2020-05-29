@@ -4,8 +4,8 @@ summary: Configuration script for IOTR
 description: |
  This script allows user to configure the IOTR from Itron. 
 base: core
-grade: stable
-confinement: strict
+grade: devel
+confinement: devmode
 architectures:
   - build-on: armhf
     run-on: armhf 
