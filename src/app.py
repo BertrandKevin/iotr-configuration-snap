@@ -25,24 +25,32 @@ def configure_or_reset():
 	return answer
 
 def configuration_program():
+	# Check if the user want to configure the ip address of the router
 	if checkUserInput.question_and_verification("Voulez-vous configurer l'adresse IP?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
 		confIP.main()
 
+	# Check if the user want to configure the NIC and if yes, if he want an auto configuration for the city of Paris or if he want a manual configuration
 	if checkUserInput.question_and_verification("Voulez-vous configurer le NIC ?\n[y]: Oui\n[n]: Non\nReponse: ") =="y":
 		if checkUserInput.question_and_verification("Voulez-vous realiser une configuration manuelle ?\n[y]: Oui\n[n]: Non, on configure automatiquement pour la ville de Paris\nReponse: ") == "y":
 			confNIC.get_nic_settings()
 		else:
 			confNIC.set_nic_settings("fd05:a40b:b47d:7340::4", "1250")
 
+	# Check if the user want to configure a VPN
 	if checkUserInput.question_and_verification("Voulez-vous configurer le VPN ?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
 		confVPN.install_snap_vpn()
 		confVPN.configure_snap()
+		
 # Main program
 def main():
 	"Run the application"
+	
+	os.mkdir("~/tmp_config")
 
 	configurationOption = configure_or_reset()
 
+	# 1 = Configuration by the user
+	# 2 = Reset of the router
 	if configurationOption == "1":
 		configuration_program()
 	elif configurationOption == "2":
