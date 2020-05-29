@@ -195,12 +195,13 @@ def configure_ipv6():
 def main():
 	routerAddress = check_input(" ip", "le routeur")
 	mask = check_input("", "le masque reseau")
-	
-	if checkUserInput.question_and_verification("Voulez-vous utiliser les adresses IPV6?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
-		configure_ipv6()
 
 	if checkUserInput.question_and_verification("Voulez-vous utiliser le service DHCP du routeur?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
 		configure_dhcp(routerAddress, mask)
+		
+	if checkUserInput.question_and_verification("Voulez-vous utiliser les adresses IPV6?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
+		configure_ipv6()
+		
 	else:
 		subprocess.run(["sudo update-rc.d dnsmasq stop"])
 		subprocess.run(["sudo update-rc.d dnsmasq disable"])
