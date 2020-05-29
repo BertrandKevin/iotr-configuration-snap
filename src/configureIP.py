@@ -132,7 +132,12 @@ def configure_dhcp(routerAddress, mask):
 	# Prepare DHCP file
 	line = "dhcp-range=" + '.'.join(firstDhcpAddress) + "," + '.'.join(lastDhcpAddress) + "," + '.'.join(mask) + ",12h"
 	try:
-		with open("~/Configuration-Folder/51-dhcp-range.conf", "w") as file:
+		if "Core" not in platform.platform():
+			path = "/home/dev/Configuration-Folder/51-dhcp-range.conf"
+		else:
+			path = "~/Configuration-Folder/51-dhcp-range.conf"
+			
+		with open(path, "w") as file:
 			file.write(line)
 	except:
 		print("Impossible d'enregistrer le fichier de configuration!")
@@ -164,8 +169,14 @@ def search_network_informations(routerAddress, mask, searchPath, filename):
 				line += "auto lo\n"
 				line += "\tiface lo inet loopback"
 
-				with open("~/Configuration-Folder/interfaces_static", "w") as file:
+				if "Core" not in platform.platform():
+					path = "/home/dev/Configuration-Folder/interfaces_static"
+				else:
+					path = "~/Configuration-Folder/interfaces_static"
+
+				with open(path, "w") as file:
 					file.write(line)
+					
 				break
 	except:
 		print("Un probleme est survenu lors de la configuration des parametres du reseau")
