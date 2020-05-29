@@ -171,7 +171,7 @@ def search_network_informations(routerAddress, mask, searchPath, filename):
 		print("Un probleme est survenu lors de la configuration des parametres du reseau")
 
 def configure_ipv6():
-	if checkUserInput.question_and_verification("Voulez-vous utiliser le prefixe IPV6 par defaut d'Evesa: \"FD05:A40B:6F6::/48" ?\n[y]: Oui\n\[n]: Non\nReponse: ") == "y":
+	if checkUserInput.question_and_verification("Voulez-vous utiliser le prefixe IPV6 par defaut d'Evesa: \"FD05:A40B:6F6::/48\" ?\n[y]: Oui\n\[n]: Non\nReponse: ") == "y":
 		ipv6Prefixe = "FD05:A40B:6F6::/48" 
 	else:
 		while True:
