@@ -3,7 +3,7 @@ import sys,os
 
 setup(
 	name = 'iotr-configure',
-	version = '0.0.2',
+	version = '0.0.3',
 	description = 'Configure the IOT router',
 	license='GPL v3',
 	author = 'Kevin Bertrand',
