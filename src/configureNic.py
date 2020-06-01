@@ -13,14 +13,14 @@ def set_nic_settings(aftr, countryCode):
 		# Country Code configuration
 		try:
 			command = "sudo netmgr -i country_code set:" + countryCode
-			subprocess.run(command)
+			os.system(command)
 		except:
 			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
 			command = "sudo netmgr -i iotr aftr_address set " + aftr
-			subprocess.run(command)
+			os.system(command)
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
 
@@ -33,14 +33,14 @@ def set_nic_settings(aftr, countryCode):
 		# Country Code configuration
 		try:
 			command = "itron-edge.netmgr -i country_code set:" + countryCode
-			subprocess.run(command)
+			os.system(command)
 		except:
 			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
 			command = "itron-edge.netmgr -i aftr_address set " + aftr
-			subprocess.run(command)
+			os.system(command)
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
 
