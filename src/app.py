@@ -52,8 +52,6 @@ def main():
 	if configurationOption == "1":
 		configuration_program()
 	elif configurationOption == "2":
-		subprocess.call("test.sh")
-		
 		# Reset IP Addresses settings
 		netmask = "255.255.255.0"
 		routerAddress = "192.168.16.1"
