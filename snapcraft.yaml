@@ -5,7 +5,7 @@ description: |
  This script allows user to configure the IOTR from Itron. 
 base: core
 grade: devel
-confinement: classic
+confinement: devmode
 architectures:
   - build-on: armhf
     run-on: armhf 
