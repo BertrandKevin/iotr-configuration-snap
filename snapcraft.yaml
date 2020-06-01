@@ -1,11 +1,11 @@
 name: iotr-configuration
-version: '0.0.3'
+version: '1.0.0'
 summary: Configuration script for IOTR
 description: |
  This script allows user to configure the IOTR from Itron. 
 base: core
 grade: devel
-confinement: devmode
+confinement: classic
 architectures:
   - build-on: armhf
     run-on: armhf 
