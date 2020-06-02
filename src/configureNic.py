@@ -11,16 +11,16 @@ def set_nic_settings(aftr, countryCode):
 		print("Ce n'est pas Ubuntu Core")
 
 		# Country Code configuration
-		#try:
-		command = "sudo -i netmgr -i country_code set:" + countryCode
-		subprocess.run([command])
-		#except:
-		#	print("Le country code n'a pas pu etre configure!")
+		try:
+			command = "sudo -i netmgr -i country_code set:" + countryCode
+			subprocess.run([command], shell=True)
+		except:
+			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
 			command = "sudo netmgr -i iotr aftr_address set " + aftr
-			subprocess.run([command])
+			subprocess.run([command], shell=True)
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
 
@@ -33,14 +33,14 @@ def set_nic_settings(aftr, countryCode):
 		# Country Code configuration
 		try:
 			command = "itron-edge.netmgr -i country_code set:" + countryCode
-			subprocess.run([command])
+			subprocess.run([command], shell=True)
 		except:
 			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
 			command = "itron-edge.netmgr -i aftr_address set " + aftr
-			subprocess.run([command])
+			subprocess.run([command], shell=True)
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
 
