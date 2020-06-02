@@ -13,16 +13,16 @@ def set_nic_settings(aftr, countryCode):
 		# Country Code configuration
 		try:
 			command = "sudo /snap/bin/netmgr -i country_code set:" + countryCode
-			p = subprocess.Popen(command, shell=True)
-			print(p)
+			subprocess.Popen(command, shell=True)
+			
 		except:
 			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
 			command = "/snap/bin/netmgr -i iotr aftr_address set " + aftr
-			p = subprocess.Popen(command, shell=True)
-			print(p)
+			subprocess.Popen(command, shell=True)
+			
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
 
