@@ -5,13 +5,13 @@ import platform
 import subprocess
 
 def install_snap_vpn():
-	#try:
-	if "Core" not in platform.platform():
-		subprocess.run(["sudo snap install /home/dev/Configuration-Folder/easy-openvpn_8.snap --dangerous --devmode"], shell=True)
-	else:
-		subprocess.run(["sudo snap install ~/Configuration-Folder/easy-openvpn_2_3_10_5_armhf.snap --dangerous --devmode"], shell=True)
-	#except:
-	#	print("Impossible d'installer le snap \"easy-openvpn\"!")
+	try:
+		if "Core" not in platform.platform():
+			subprocess.run(["sudo snap install /home/dev/Configuration-Folder/easy-openvpn_8.snap --dangerous --devmode"], shell=True)
+		else:
+			subprocess.run(["sudo snap install ~/Configuration-Folder/easy-openvpn_2_3_10_5_armhf.snap --dangerous --devmode"], shell=True)
+	except:
+		print("Impossible d'installer le snap \"easy-openvpn\"!")
 
 def configure_snap():
 	while True:
@@ -58,11 +58,8 @@ def write_openvpn_service(filepath):
 
 	try:
 		commandLine = "sudo chmod 644 " + filePath
-		os.system(commandLine)
-		print("Commande chmod ok")
-		os.system("sudo cp filePath /etc/systemd/system/openvpn.service")
-		print("Commande cp ok")
-		os.system("sudo systemctl enable openvpn")
-		print("Commande systemctl ok")
+		subprocess.run([commandLine], shell=True)
+		subprocess.run(["sudo cp filePath /etc/systemd/system/openvpn.service"], shell=True)
+		subprocess.run(["sudo systemctl enable openvpn"], shell=True)
 	except:
 		print("Impossible d'installer le service de demarrage!")
