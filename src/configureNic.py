@@ -11,16 +11,16 @@ def set_nic_settings(aftr, countryCode):
 		print("Ce n'est pas Ubuntu Core")
 
 		# Country Code configuration
-		#try:
-		command = "sudo /snap/bin/netmgr -i country_code set:" + countryCode
-		os.system(command)
-		#except:
-		#	print("Le country code n'a pas pu etre configure!")
+		try:
+			command = "sudo /snap/bin/netmgr -i country_code set:" + countryCode
+			os.system(command)
+		except:
+			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
-			command = "sudo /snap/bin/netmgr -i iotr aftr_address set " + aftr
-			subprocess.run([command])
+			command = "/snap/bin/netmgr -i iotr aftr_address set " + aftr
+			os.system(command)
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
 
