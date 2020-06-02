@@ -7,9 +7,9 @@ import subprocess
 def install_snap_vpn():
 	#try:
 	if "Core" not in platform.platform():
-		subprocess.run(["sudo -S snap install /home/dev/Configuration-Folder/easy-openvpn_8.snap --dangerous --devmode"])
+		subprocess.run(["sudo -E snap install /home/dev/Configuration-Folder/easy-openvpn_8.snap --dangerous --devmode"])
 	else:
-		subprocess.run(["sudo -S snap install ~/Configuration-Folder/easy-openvpn_2_3_10_5_armhf.snap --dangerous --devmode"])
+		subprocess.run(["sudo -E snap install ~/Configuration-Folder/easy-openvpn_2_3_10_5_armhf.snap --dangerous --devmode"])
 	#except:
 	#	print("Impossible d'installer le snap \"easy-openvpn\"!")
 
