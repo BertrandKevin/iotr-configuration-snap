@@ -12,14 +12,14 @@ def set_nic_settings(aftr, countryCode):
 
 		# Country Code configuration
 		try:
-			command = "sudo -i netmgr -i country_code set:" + countryCode
+			command = "netmgr -i country_code set:" + countryCode
 			subprocess.run([command], shell=True)
 		except:
 			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
-			command = "sudo netmgr -i iotr aftr_address set " + aftr
+			command = "netmgr -i iotr aftr_address set " + aftr
 			subprocess.run([command], shell=True)
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
