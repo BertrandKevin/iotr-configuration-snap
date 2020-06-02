@@ -13,7 +13,7 @@ architectures:
 apps:
   iotr-configuration:
     command: bin/hello
-    plugs: [home,network-bind,network,home]
+    plugs: [home,network-bind,network]
 
 parts:
   iotr-configuration:
