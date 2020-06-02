@@ -12,7 +12,7 @@ def set_nic_settings(aftr, countryCode):
 
 		# Country Code configuration
 		#try:
-		command = "sudo netmgr -i country_code set:" + countryCode
+		command = "sudo -i netmgr -i country_code set:" + countryCode
 		subprocess.run([command])
 		#except:
 		#	print("Le country code n'a pas pu etre configure!")
