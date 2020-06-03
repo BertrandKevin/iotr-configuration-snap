@@ -121,8 +121,12 @@ def check_last_dhcp(routerAddress, mask):
 
 def configure_dhcp(routerAddress, mask):
 	try:
-		subprocess.run(["sudo update-rc.d dnsmasq enable"], shell=True)
-		subprocess.run(["sudo update-rc.d dnsmasq start"], shell=True)
+		print("Enable dnsmasq")
+		p = os.system("sudo update-rc.d dnsmasq enable")
+		print(p)
+		print("Start dnsmasq")
+		p = os.system("sudo update-rc.d dnsmasq start")
+		print(p)
 	except:
 		print("L'activation du service DHCP a echoue")
 
@@ -196,7 +200,9 @@ def configure_ipv6():
 	if "Core" not in platform.platform():
 		try:
 			commandLine = "sudo netmgr -i iotr network_prefix set " + ipv6Prefixe
-			subprocess.run([commandLine], shell=True)
+			print("Set IPV6 prefix")
+			p = os.system(commandLine)
+			print(p)
 		except:
 			print("Le prefixe IPV6 n'a pas pu etre encode!")
 	else:
@@ -214,7 +220,11 @@ def main():
 		configure_ipv6()
 		
 	else:
-		subprocess.run(["sudo update-rc.d dnsmasq stop"], shell=True)
-		subprocess.run(["sudo update-rc.d dnsmasq disable"], shell=True)
+		print("Stop dnsmasq")
+		p = os.system("sudo update-rc.d dnsmasq stop")
+		print(p)
+		print("Disable dnsmasq")
+		p = os.system("sudo update-rc.d dnsmasq disable")
+		print(p)
 
 	search_network_informations(routerAddress, mask, "/var/snap/ssnmode", "interfaces_static")
