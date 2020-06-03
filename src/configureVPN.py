@@ -52,14 +52,17 @@ def write_openvpn_service(filepath):
 		filePath = "/home/dev/Configuration-Folder/openvpn.service"
 	else:
 		filePath = "~/Configuration-Folder/openvpn.service"
-		
-	with open(filePath, "w") as file:
-		file.write(toWrite)
 
 	try:
-		commandLine = "sudo -t chmod 644 " + filePath
+		with open(filePath, "w") as file:
+			file.write(toWrite)
+			
+		commandLine = "sudo chmod 644 " + filePath
+		print("chmod")
 		subprocess.run([commandLine], shell=True)
-		subprocess.run(["sudo -t cp filePath /etc/systemd/system/openvpn.service"], shell=True)
-		subprocess.run(["sudo -t systemctl enable openvpn"], shell=True)
+		print("cp")
+		subprocess.run(["sudo cp filePath /etc/systemd/system/openvpn.service"], shell=True)
+		print("enable")
+		subprocess.run(["sudo systemctl enable openvpn"], shell=True)
 	except:
 		print("Impossible d'installer le service de demarrage!")
