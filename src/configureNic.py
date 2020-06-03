@@ -12,16 +12,20 @@ def set_nic_settings(aftr, countryCode):
 
 		# Country Code configuration
 		try:
+			print("Set country code")
 			command = "sudo /snap/bin/netmgr -i country_code set:" + countryCode
-			subprocess.Popen(command, shell=True)
+			p = os.system(command)
+			print(p)
 			
 		except:
 			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
+			print("set aftr")
 			command = "/snap/bin/netmgr -i iotr aftr_address set " + aftr
-			subprocess.Popen(command, shell=True)
+			p = os.system(command)
+			print(p)
 			
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
@@ -35,14 +39,18 @@ def set_nic_settings(aftr, countryCode):
 		# Country Code configuration
 		try:
 			command = "itron-edge.netmgr -i country_code set:" + countryCode
-			subprocess.run([command], shell=True)
+			print("Set country code")
+			p = os.system(command)
+			print(p)
 		except:
 			print("Le country code n'a pas pu etre configure!")
 
 		# AFTR configuration
 		try:
+			print("Set AFTR")
 			command = "itron-edge.netmgr -i aftr_address set " + aftr
-			subprocess.run([command], shell=True)
+			p = os.system(command)
+			print(p)
 		except:
 			print("L'AFTR n'a pas pu etre configuree!")
 
@@ -56,7 +64,7 @@ def get_nic_settings():
 
 	while True:
 		try:
-			countryCode = int(input("Encodez le country code"))
+			countryCode = int(input("Encodez le country code: "))
 			question = "Validez-vous le country code " + str(countryCode) + " ?\n[y]: Oui\n[n]: Non\nReponse: "
 
 			if checkUserInput.question_and_verification(question) == "y":
@@ -68,7 +76,7 @@ def get_nic_settings():
 			print("Le country code n'est pas valide!")
 
 	while True:
-		answer = input("Encodez l'adresse AFTR: ")
+		aftr = input("Encodez l'adresse AFTR: ")
 		question = "Validez-vous l'AFTR " + aftr + " ?\n[y]: Oui\n[n]: Non\nReponse: "
 
 		if checkUserInput.question_and_verification(question) == "y":
