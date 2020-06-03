@@ -215,10 +215,6 @@ def main():
 
 	if checkUserInput.question_and_verification("Voulez-vous utiliser le service DHCP du routeur?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
 		configure_dhcp(routerAddress, mask)
-		
-	if checkUserInput.question_and_verification("Voulez-vous utiliser les adresses IPV6?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
-		configure_ipv6()
-		
 	else:
 		print("Stop dnsmasq")
 		p = os.system("sudo systemctl stop dnsmasq")
@@ -226,5 +222,8 @@ def main():
 		print("Disable dnsmasq")
 		p = os.system("sudo systemctl disable dnsmasq")
 		print(p)
+		
+	if checkUserInput.question_and_verification("Voulez-vous utiliser les adresses IPV6?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
+		configure_ipv6()
 
 	search_network_informations(routerAddress, mask, "/var/snap/ssnmode", "interfaces_static")
