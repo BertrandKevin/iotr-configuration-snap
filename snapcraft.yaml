@@ -13,7 +13,7 @@ architectures:
 apps:
   iotr-configuration:
     command: bin/iotr-configuration
-    plugs: [home,network-bind,network]
+    plugs: [home,network-bind,network,snapd-control,network-control]
 
 parts:
   iotr-configuration:
