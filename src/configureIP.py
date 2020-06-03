@@ -122,10 +122,10 @@ def check_last_dhcp(routerAddress, mask):
 def configure_dhcp(routerAddress, mask):
 	try:
 		print("Enable dnsmasq")
-		p = os.system("sudo update-rc.d dnsmasq enable")
+		p = os.system("sudo systemctl enable dnsmasq")
 		print(p)
 		print("Start dnsmasq")
-		p = os.system("sudo update-rc.d dnsmasq start")
+		p = os.system("sudo systemctl start dnsmasq")
 		print(p)
 	except:
 		print("L'activation du service DHCP a echoue")
@@ -221,10 +221,10 @@ def main():
 		
 	else:
 		print("Stop dnsmasq")
-		p = os.system("sudo update-rc.d dnsmasq stop")
+		p = os.system("sudo systemctl stop dnsmasq")
 		print(p)
 		print("Disable dnsmasq")
-		p = os.system("sudo update-rc.d dnsmasq disable")
+		p = os.system("sudo systemctl disable dnsmasq")
 		print(p)
 
 	search_network_informations(routerAddress, mask, "/var/snap/ssnmode", "interfaces_static")
