@@ -122,10 +122,10 @@ def check_last_dhcp(routerAddress, mask):
 def configure_dhcp(routerAddress, mask):
 	try:
 		print("Enable dnsmasq")
-		p = os.system("sudo systemctl enable dnsmasq")
+		p = os.system("systemctl enable dnsmasq")
 		print(p)
 		print("Start dnsmasq")
-		p = os.system("sudo systemctl start dnsmasq")
+		p = os.system("systemctl start dnsmasq")
 		print(p)
 	except:
 		print("L'activation du service DHCP a echoue")
@@ -173,11 +173,14 @@ def search_network_informations(routerAddress, mask, searchPath, filename):
 				line += "auto lo\n"
 				line += "\tiface lo inet loopback"
 
+				print("informations ok")
+				
 				if "Core" not in platform.platform():
 					path = "/home/dev/Configuration-Folder/interfaces_static"
 				else:
 					path = "~/Configuration-Folder/interfaces_static"
 
+				print("avant ecriture")
 				with open(path, "w") as file:
 					file.write(line)
 					
@@ -217,10 +220,10 @@ def main():
 		configure_dhcp(routerAddress, mask)
 	else:
 		print("Stop dnsmasq")
-		p = os.system("sudo systemctl stop dnsmasq")
+		p = os.system("systemctl stop dnsmasq")
 		print(p)
 		print("Disable dnsmasq")
-		p = os.system("sudo systemctl disable dnsmasq")
+		p = os.system("systemctl disable dnsmasq")
 		print(p)
 		
 	if checkUserInput.question_and_verification("Voulez-vous utiliser les adresses IPV6?\n[y]: Oui\n[n]: Non\nReponse: ") == "y":
