@@ -22,7 +22,7 @@ def set_nic_settings(aftr, countryCode):
 		# AFTR configuration
 		try:
 			print("set aftr")
-			command = "netmgr -i iotr aftr_address set " + aftr
+			command = "sudo netmgr -i iotr aftr_address set " + aftr
 			p = os.system(command)
 			print(p)
 			
