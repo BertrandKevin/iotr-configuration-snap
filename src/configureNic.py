@@ -10,6 +10,17 @@ def set_nic_settings(aftr, countryCode):
 	if "Core" not in platform.platform():
 		print("Ce n'est pas Ubuntu Core")
 
+		print("without sudo")
+		try:
+			os.system("chmod 777 /run/snapd/ns/snap.netmgr.info")
+		except:
+			print("without sudo failed")
+			
+		print("with sudo")
+		try:
+			os.system("sudo chmod 777 /run/snapd/ns/snap.netmgr.info")
+		except:
+			print("With sudo failed")
 		# Country Code configuration
 		try:
 			print("Set country code")
