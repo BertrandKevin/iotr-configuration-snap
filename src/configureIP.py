@@ -108,7 +108,7 @@ def check_last_dhcp(routerAddress, mask):
 			result = int(routerAddress[i]) + 255 - int(mask[i]) - 2
 
 		if result > 255 and i != 0:
-			dhcpAddress[i-1] = str(dhcpAddress[i-1] + 1)
+			dhcpAddress[i-1] = str(int(dhcpAddress[i-1]) + 1)
 			dhcpAddress[i] = str(result-256)
 		elif result <= 255:
 			dhcpAddress[i] = str(result)
